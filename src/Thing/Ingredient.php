@@ -63,7 +63,7 @@ class Ingredient
      * Determines whether or not todays date is before the useBy date of the ingredient
      * @return bool if the ingredient is expired
      */
-    public function isExpired()
+    public function isBeforeUseBy()
     {
         $date = strtotime($this->getUseBy());
         $now = strtotime('now');

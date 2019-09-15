@@ -39,12 +39,12 @@ class IngredientTest extends TestCase
     public function testUseByNotExpired()
     {
         $ingredient = new Thing\Ingredient($this->title, $this->tomorrow, $this->tomorrow);
-        $this->assertTrue($ingredient->isExpired());
+        $this->assertTrue($ingredient->isBeforeUseBy());
     }
 
     public function testUseByIsExpired()
     {
         $ingredient = new Thing\Ingredient($this->title, $this->today, $this->today);
-        $this->assertFalse($ingredient->isExpired());
+        $this->assertFalse($ingredient->isBeforeUseBy());
     }
 }

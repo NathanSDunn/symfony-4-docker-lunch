@@ -28,6 +28,14 @@ class IngredientService
      */
     public function filterIsAfterBestBeforeAndBeforeUseBy($ingredients)
     {
-        return $ingredients;
+        $result = [];
+
+        foreach ($ingredients as $ingredient) {
+            if (!$ingredient->isBestBefore() && $ingredient->isBeforeUseBy()) {
+                $result[] = $ingredient;
+            }
+        }
+
+        return $result;
     }
 }
