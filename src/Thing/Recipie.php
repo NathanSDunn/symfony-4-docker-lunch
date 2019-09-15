@@ -34,4 +34,16 @@ class Recipie
     {
         return $this->ingredients;
     }
+
+    /**
+     * Determines if a recipie can be fulfilled from a list of ingredients
+     * @param $ingredientNames the ingredients available
+     * @return bool whether or not all ingredients are available for the recipie
+     */
+    public function hasAllIngredientNames($ingredientNames)
+    {
+        $intersect = array_intersect($ingredientNames, $this->getIngredients());
+
+        return count($intersect) == count($this->getIngredients());
+    }
 }
