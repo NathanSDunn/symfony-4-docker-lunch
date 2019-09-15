@@ -1,6 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_root:
+  path: /
+  controller: App\Controller\HomeController::get
+
 app_lunch:
   path: /lunch
   controller: App\Controller\LunchController::get
