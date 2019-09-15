@@ -50,4 +50,13 @@ class IngredientServiceTest extends TestCase
         $this->assertEquals(count($results), 1);
         $this->assertEquals($this->titleBestBefore, $results[0]);
     }
+
+    public function testGetTitlesBeforeUseBy()
+    {
+        $ingredientService = new IngredientService();
+        $results = $ingredientService->getTitlesBeforeUseBy($this->ingredientsFixture);
+        $this->assertEquals(count($results), 2);
+        $this->assertEquals($this->titleBestBefore, $results[0]);
+        $this->assertEquals($this->titleBestAfter, $results[1]);
+    }
 }

@@ -56,4 +56,22 @@ class IngredientService
 
         return $result;
     }
+
+    /**
+     * Create an associative array (ie. HashMap) of ingredients that are before their use-by date
+     * @param $ingredients the list of ingredients
+     * @return the names of ingredients that are before their use-by date
+     */
+    public function getTitlesBeforeUseBy($ingredients)
+    {
+        $names = [];
+
+        foreach ($ingredients as $ingredient) {
+            if ($ingredient->isBeforeUseBy()) {
+                $result[] = $ingredient->getTitle();
+            }
+        }
+
+        return $result;
+    }
 }
