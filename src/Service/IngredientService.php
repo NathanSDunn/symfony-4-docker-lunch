@@ -38,4 +38,22 @@ class IngredientService
 
         return $result;
     }
+
+    /**
+     * Create an associative array (ie. HashMap) of ingredients that are before their best-before date
+     * @param $ingredients the list of ingredients
+     * @return the names of ingredients that are before their best before date
+     */
+    public function getTitlesBestBefore($ingredients)
+    {
+        $names = [];
+
+        foreach ($ingredients as $ingredient) {
+            if ($ingredient->isBestBefore()) {
+                $result[] = $ingredient->getTitle();
+            }
+        }
+
+        return $result;
+    }
 }
