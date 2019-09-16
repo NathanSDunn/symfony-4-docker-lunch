@@ -1,21 +1,21 @@
 <?php
 namespace App\Service;
 
-class RecipieService
+class RecipeService
 {
-    protected $recipies;
+    protected $recipes;
     protected $ingredientsBestBefore;
     protected $ingredientNamesBeforeUseBy;
 
     /**
-     * RecipieService constructor.
-     * @param $recipies
+     * RecipeService constructor.
+     * @param $recipes
      * @param $ingredientsBestBefore
      * @param $ingredientNamesBeforeUseBy
      */
-    public function __construct($recipies, $ingredientsBestBefore, $ingredientNamesBeforeUseBy)
+    public function __construct($recipes, $ingredientsBestBefore, $ingredientNamesBeforeUseBy)
     {
-        $this->recipies = $recipies;
+        $this->recipes = $recipes;
         $this->ingredientsBestBefore = $ingredientsBestBefore;
         $this->ingredientNamesBeforeUseBy = $ingredientNamesBeforeUseBy;
     }
@@ -23,9 +23,9 @@ class RecipieService
     private function filterByIngredients($ingredients)
     {
         $result = [];
-        foreach ($this->recipies as $recipie) {
-            if ($recipie->hasAllIngredientNames($ingredients)) {
-                $result[] = $recipie;
+        foreach ($this->recipes as $recipe) {
+            if ($recipe->hasAllIngredientNames($ingredients)) {
+                $result[] = $recipe;
             }
         }
 
@@ -45,15 +45,15 @@ class RecipieService
     public function getLunch()
     {
         $result = [];
-        foreach ($this->filterBestBefore() as $recipie) {
-            $name = $recipie->getTitle();
+        foreach ($this->filterBestBefore() as $recipe) {
+            $name = $recipe->getTitle();
             if (!in_array($name, $result)) {
                 $result[] = $name;
             }
         }
 
-        foreach ($this->filterBeforeUseBy() as $recipie) {
-            $name = $recipie->getTitle();
+        foreach ($this->filterBeforeUseBy() as $recipe) {
+            $name = $recipe->getTitle();
             if (!in_array($name, $result)) {
                 $result[] = $name;
             }

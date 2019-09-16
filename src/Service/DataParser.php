@@ -16,7 +16,7 @@ class DataParser
         $recipes = [];
 
         foreach ($list as $recipe) {
-            $recipes[] = new Thing\Recipie($recipe['title'], $recipe['ingredients']);
+            $recipes[] = new Thing\Recipe($recipe['title'], $recipe['ingredients']);
         }
 
         return $recipes;

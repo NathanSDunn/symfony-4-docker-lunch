@@ -24,9 +24,9 @@ class RecipieServiceTest extends TestCase
 
     protected function setUp()
     {
-        $this->recipieNotExpired = new Thing\Recipie($this->titleNotExpired, $this->ingredientNamesNotExpired);
-        $this->recipieBestBefore = new Thing\Recipie($this->titleBestBefore, $this->ingredientNamesBestBefore);
-        $this->recipieExpired = new Thing\Recipie($this->titleExpired, $this->ingredientNamesExpired);
+        $this->recipieNotExpired = new Thing\Recipe($this->titleNotExpired, $this->ingredientNamesNotExpired);
+        $this->recipieBestBefore = new Thing\Recipe($this->titleBestBefore, $this->ingredientNamesBestBefore);
+        $this->recipieExpired = new Thing\Recipe($this->titleExpired, $this->ingredientNamesExpired);
 
         $this->recipies = [
             $this->recipieNotExpired,
@@ -34,7 +34,7 @@ class RecipieServiceTest extends TestCase
             $this->recipieExpired,
         ];
 
-        $this->recipeService = new Service\RecipieService(
+        $this->recipeService = new Service\RecipeService(
             $this->recipies,
             $this->ingredientNamesBestBefore,
             $this->ingredientNamesNotExpired

@@ -14,7 +14,7 @@ class RecipieTest extends TestCase
 
     protected function setUp()
     {
-        $this->recipie = new Thing\Recipie($this->title, $this->ingredientNames);
+        $this->recipie = new Thing\Recipe($this->title, $this->ingredientNames);
     }
 
     public function testConstructor()

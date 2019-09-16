@@ -2,7 +2,7 @@
 
 namespace App\Thing;
 
-class Recipie
+class Recipe
 {
     private $title;
 

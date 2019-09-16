@@ -15,7 +15,7 @@ class LunchController
         $ingredients = $data->readIngredients();
 
         $ingredientService = new Service\IngredientService($ingredients);
-        $recipeService = new Service\RecipieService(
+        $recipeService = new Service\RecipeService(
             $recipes,
             $ingredientService->getTitlesBestBefore(),
             $ingredientService->getTitlesBeforeUseBy()
