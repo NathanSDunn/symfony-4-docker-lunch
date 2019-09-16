@@ -57,7 +57,7 @@ class IngredientService
      */
     public function getTitlesBestBefore()
     {
-        $names = [];
+        $result = [];
 
         foreach ($this->ingredients as $ingredient) {
             if ($ingredient->isBestBefore()) {
@@ -75,7 +75,7 @@ class IngredientService
      */
     public function getTitlesBeforeUseBy()
     {
-        $names = [];
+        $result = [];
 
         foreach ($this->ingredients as $ingredient) {
             if ($ingredient->isBeforeUseBy()) {
