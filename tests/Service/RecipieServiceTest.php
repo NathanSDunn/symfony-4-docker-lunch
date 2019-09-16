@@ -55,4 +55,12 @@ class RecipieServiceTest extends TestCase
         $this->assertEquals($this->titleNotExpired, $result[0]->getTitle());
         $this->assertEquals($this->titleBestBefore, $result[1]->getTitle());
     }
+
+    public function testGetLunch()
+    {
+        $result = $this->recipeService->getLunch();
+        $this->assertEquals(2, count($result));
+        $this->assertEquals($this->titleNotExpired, $result[1]);
+        $this->assertEquals($this->titleBestBefore, $result[0]);
+    }
 }

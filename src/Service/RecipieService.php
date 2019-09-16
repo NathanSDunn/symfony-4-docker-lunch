@@ -41,4 +41,24 @@ class RecipieService
     {
         return $this->filterByIngredients($this->ingredientNamesBeforeUseBy);
     }
+
+    public function getLunch()
+    {
+        $result = [];
+        foreach ($this->filterBestBefore() as $recipie) {
+            $name = $recipie->getTitle();
+            if (!in_array($name, $result)) {
+                $result[] = $name;
+            }
+        }
+
+        foreach ($this->filterBeforeUseBy() as $recipie) {
+            $name = $recipie->getTitle();
+            if (!in_array($name, $result)) {
+                $result[] = $name;
+            }
+        }
+
+        return $result;
+    }
 }
