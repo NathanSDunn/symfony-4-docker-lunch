@@ -45,5 +45,14 @@ class RecipieServiceTest extends TestCase
     {
         $result = $this->recipeService->filterBestBefore();
         $this->assertEquals(1, count($result));
+        $this->assertEquals($this->titleBestBefore, $result[0]->getTitle());
+    }
+
+    public function testFilterBeforeUseBy()
+    {
+        $result = $this->recipeService->filterBeforeUseBy();
+        $this->assertEquals(2, count($result));
+        $this->assertEquals($this->titleNotExpired, $result[0]->getTitle());
+        $this->assertEquals($this->titleBestBefore, $result[1]->getTitle());
     }
 }

@@ -20,15 +20,25 @@ class RecipieService
         $this->ingredientNamesBeforeUseBy = $ingredientNamesBeforeUseBy;
     }
 
-    public function filterBestBefore()
+    private function filterByIngredients($ingredients)
     {
         $result = [];
         foreach ($this->recipies as $recipie) {
-            if ($recipie->hasAllIngredientNames($this->ingredientsBestBefore)) {
+            if ($recipie->hasAllIngredientNames($ingredients)) {
                 $result[] = $recipie;
             }
         }
 
         return $result;
+    }
+
+    public function filterBestBefore()
+    {
+        return $this->filterByIngredients($this->ingredientsBestBefore);
+    }
+
+    public function filterBeforeUseBy()
+    {
+        return $this->filterByIngredients($this->ingredientNamesBeforeUseBy);
     }
 }
