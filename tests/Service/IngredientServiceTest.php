@@ -13,48 +13,48 @@ class IngredientServiceTest extends TestCase
     protected $tomorrow;
     protected $today;
 
-    protected $ingredientsFixture;
+    protected $ingredients;
+
+    protected $ingredientService;
 
     protected function setUp()
     {
         $this->tomorrow = date('Y-m-d', strtotime('+1 day'));
         $this->today = date('Y-m-d', strtotime('now'));
 
-        $this->ingredientsFixture = [
+        $this->ingredients = [
             $ingredient = new Thing\Ingredient($this->titleBestBefore, $this->tomorrow, $this->tomorrow),
             $ingredient = new Thing\Ingredient($this->titleBestAfter, $this->today, $this->tomorrow),
             $ingredient = new Thing\Ingredient($this->titleExpired, $this->today, $this->today),
         ];
+
+        $this->ingredientService = new IngredientService($this->ingredients);
     }
 
     public function testFilterIsBestBefore()
     {
-        $ingredientService = new IngredientService();
-        $results = $ingredientService->filterIsBestBefore($this->ingredientsFixture);
+        $results = $this->ingredientService->filterIsBestBefore();
         $this->assertEquals(count($results), 1);
         $this->assertEquals($this->titleBestBefore, $results[0]->getTitle());
     }
 
     public function testFilterIsAfterBestBeforeAndBeforeUseBy()
     {
-        $ingredientService = new IngredientService();
-        $results = $ingredientService->filterIsAfterBestBeforeAndBeforeUseBy($this->ingredientsFixture);
+        $results = $this->ingredientService->filterIsAfterBestBeforeAndBeforeUseBy();
         $this->assertEquals(count($results), 1);
         $this->assertEquals($this->titleBestAfter, $results[0]->getTitle());
     }
 
     public function testGetNamesBestBefore()
     {
-        $ingredientService = new IngredientService();
-        $results = $ingredientService->getTitlesBestBefore($this->ingredientsFixture);
+        $results = $this->ingredientService->getTitlesBestBefore();
         $this->assertEquals(count($results), 1);
         $this->assertEquals($this->titleBestBefore, $results[0]);
     }
 
     public function testGetTitlesBeforeUseBy()
     {
-        $ingredientService = new IngredientService();
-        $results = $ingredientService->getTitlesBeforeUseBy($this->ingredientsFixture);
+        $results = $this->ingredientService->getTitlesBeforeUseBy();
         $this->assertEquals(count($results), 2);
         $this->assertEquals($this->titleBestBefore, $results[0]);
         $this->assertEquals($this->titleBestAfter, $results[1]);
