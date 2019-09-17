@@ -24,6 +24,7 @@ class Ingredients
                 $ingredient['use-by']
             );
         }
+        $this->ingredients = $ingredients;
     }
 
     public function get()

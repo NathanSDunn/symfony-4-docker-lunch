@@ -62,7 +62,7 @@ Given that we wish our code to have tests and that Acceptance criteria, as well 
 Property based testing was considered overkill for the purposes of this exercise regarding ingredient names as it was not specified in the specification and made testing easier, but was used for ingredient dates as these may change in the future.
 
 ### Fixtures
-A large amount of copy-pasting of fixtures was required in order to provide a full set of tests. It would be useful to investigate opportunities to share fixtures between tests in future work.
+A large amount of copy-pasting of fixtures internal to TestCases was initially required in order to provide a full set of tests. Some of these were later refactored to depend on Mocks and make the whole thing much cleaner.
 
 ## OOP and source data
 It was noted from recipies.json and ingredients.json that arrays of Recipies and Ingredients are supplied. To simplify parsing of these it was decided to use arrays of these objects in both testing and parsing, instead of creating container objects for each. The service pattern was used to create a Services that could be tested against acceptance criteria, with prior knoweledge of the input format.
@@ -70,13 +70,13 @@ It was noted from recipies.json and ingredients.json that arrays of Recipies and
 It was also noted that all of the dates in the sample data are now past. For now, the endpoint will always return [] however should the sample data be modified to have ingredient expiry / best before dates in the future this would change. Running find/replace to change 2018 to 2020 produced the following response: ["Ham and Cheese Toastie","Salad","Hotdog"], skipping the "Fry-up" Recipie as there is no entry for "Baked Beans" in the ingredient list (which is required for that recipie).
 
 # Further work
-When implementing the Recipie object it was considered that a hasIngredient method may allow O(1) time complexity, should a method be added to ingredient that would display Expired and After Best Before Ingredients. 
+array_intersect was used as an alternative to using HashMaps for determining if a recipe can be made from a set of ingredients however it is likely that under the hood O(n^2) time complexity would be observed. isset() may be another viable alternative to improving performance in similar situations. Interestingly, JavaScript displays this same quirk when attempting to use an array as a HashMap, as demonstrated in https://github.com/NathanSDunn/eve-online-jump-distance
 
-It was initially thought that the existing implementation has O(n) time complexity, with n being the largest list of ingredients. Upon further investigation it was noted that array_key_exists sets a numeric key for associative arrays with no value noted. ie. ["Ham","Cheese"] actually is represented as [0 => "Ham", 1 => "Cheese"], creating the need to iterate through both recipies and ingredients. 
+To produce the final set of ingredients without duplicates associative arrays were able to be used as an approximation of a HashMap by using with the recipe name as the key. This allows a new set of recipies after their expiry date, but before their best-before date to be sorted to the bottom in constant O(1) time, without the need for an additional sort function or the associated time cost. 
 
-array_intersect was used as an alternative to my failed approximation of a hashmap however it is likely that under the hood O(n^2) time complexity would be observed. isset() may be another viable alternative to improving performance in similar situations. Interestingly, JavaScript displays this same quirk when attempting to use an array as a HashMap, as demonstrated in https://github.com/NathanSDunn/eve-online-jump-distance
+Given that the list of ingredients per recipie is small there would not be a noticable difference in runtime performance by performing further micro optimisations - the largest real world time costs in this exercise are handling disk accesses, time to first byte (TTFB) of the endpoint query, and framework overhead.
 
-However, given that the list of ingredients per recipie is small there would not be a noticable difference in runtime performance - the largest real world time costs are handling disk accesses, time to first byte (TTFB) of the endpoint query, and framework overhead.
+Refactoring dependencies to allow for dependency injection and be more easily tested would be another improvement. Whilst I have not yet researched how this is done in Symfony 4, I do know how this is done in Laravel and other frameworks. Refactoring classes to inject object dependencies in the constructor would be the first step in doing this.
 
-Although this new approach would be closer to a 'perfect' solution, I hope this 'implementation is sufficient to demonstrate my experience with PHP & Testing as well as my willingness and ability to learn new technologies (Symfony 4 and Docker).
+Whilst there are some aspects that can be improved in order to create a perfect solution I hope this existing implementation is sufficient to demonstrate my experience with PHP & Testing as well as my willingness and ability to learn new technologies (Symfony 4 and Docker). 
 

@@ -9,9 +9,9 @@ class IngredientService
      * IngredientService constructor.
      * @param $ingredients
      */
-    public function __construct($ingredients)
+    public function __construct(Ingredients $ingredients)
     {
-        $this->ingredients = $ingredients;
+        $this->ingredients = $ingredients->get();
     }
 
     /**

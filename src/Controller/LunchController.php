@@ -9,12 +9,14 @@ class LunchController
 {
     public function get()
     {
-        $data = new Service\DataParser();
+        $data = new Service\Recipes();
 
         $recipes = $data->readRecipies();
-        $ingredients = $data->readIngredients();
 
-        $ingredientService = new Service\IngredientService($ingredients);
+        $ingredientService = new Service\IngredientService(
+            new Service\Ingredients()
+        );
+        
         $recipeService = new Service\RecipeService(
             $recipes,
             $ingredientService->getTitlesBestBefore(),
