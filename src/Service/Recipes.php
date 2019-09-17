@@ -12,7 +12,7 @@ class Recipes
      * Recipes constructor.
      * @param string $path the patch containing the input file relative to repository root
      */
-    public function __construct($path = 'data/recipies.json')
+    public function __construct($path = 'data/recipes.json')
     {
         $list = json_decode(
             file_get_contents(__DIR__ . '/../' . $path),
