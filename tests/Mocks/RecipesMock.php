@@ -6,32 +6,23 @@ use App\Thing;
 
 class RecipesMock extends Recipes
 {
-    protected $ingredientNamesBestBefore = ['titleBestBefore'];
-    protected $recipieBestBefore;
-
-    protected $ingredientNamesNotExpired = ['titleBestBefore', 'titleBestAfter'];
-    protected $recipieNotExpired;
-
-    protected $ingredientNamesExpired = ['titleBestBefore', 'titleBestAfter', 'titleExpired'];
-    protected $recipieExpired;
-
     /*
      * Mock a set of recipies for testing
      * @param
      * @return array
      */
-    public function get($path = 'data/recipies.json')
+    public function __construct()
     {
-        $this->recipieNotExpired = new Thing\Recipe('titleNotExpired', $this->ingredientNamesNotExpired);
-        $this->recipieBestBefore = new Thing\Recipe('titleBestBefore', $this->ingredientNamesBestBefore);
-        $this->recipieExpired = new Thing\Recipe('titleExpired', $this->ingredientNamesExpired);
+        $recipeNotExpired = new Thing\Recipe('titleNotExpired', ['titleBestBefore', 'titleBestAfter']);
+        $recipeBestBefore = new Thing\Recipe('titleBestBefore', ['titleBestBefore']);
+        $recipeExpired = new Thing\Recipe('titleExpired', ['titleBestBefore', 'titleBestAfter', 'titleExpired']);
 
-        $this->recipies = [
-            $this->recipieNotExpired,
-            $this->recipieBestBefore,
-            $this->recipieExpired,
+        $this->recipes = [
+            $recipeNotExpired,
+            $recipeBestBefore,
+            $recipeExpired,
         ];
 
-        return $this->recipies;
+        return $this->recipes;
     }
 }
