@@ -16,20 +16,6 @@ class IngredientServiceTest extends TestCase
         );
     }
 
-    public function testFilterIsBestBefore()
-    {
-        $results = $this->ingredientService->filterIsBestBefore();
-        $this->assertEquals(1, count($results));
-        $this->assertEquals('titleBestBefore', $results[0]->getTitle());
-    }
-
-    public function testFilterIsAfterBestBeforeAndBeforeUseBy()
-    {
-        $results = $this->ingredientService->filterIsAfterBestBeforeAndBeforeUseBy();
-        $this->assertEquals(1, count($results));
-        $this->assertEquals('titleBestAfter', $results[0]->getTitle());
-    }
-
     public function testGetNamesBestBefore()
     {
         $results = $this->ingredientService->getTitlesBestBefore();
