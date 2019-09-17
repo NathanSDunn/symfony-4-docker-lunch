@@ -1,43 +1,22 @@
 <?php
 namespace App\Tests\Service;
 
-use App\Thing;
 use App\Service;
+use App\Tests\Mocks\IngredientsMock;
+use App\Tests\Mocks\RecipesMock;
 use PHPUnit\Framework\TestCase;
 
 class RecipieServiceTest extends TestCase
 {
-    protected $titleNotExpired = 'Pizza - Not Expired'; //more ingredients probably required in the real world ;)
-    protected $ingredientNamesNotExpired = ['Ham', 'Cheese'];
-    protected $recipieNotExpired;
-
-    protected $titleBestBefore = 'Ham Snack - Best Before';
-    protected $ingredientNamesBestBefore = ['Ham'];
-    protected $recipieBestBefore;
-
-    protected $titleExpired = 'Ham & Tomato Melt - Expired';
-    protected $ingredientNamesExpired = ['Ham', 'Cheese', 'Tomato'];
-    protected $recipieExpired;
-
-    protected $recipies;
     protected $recipeService;
 
     protected function setUp()
     {
-        $this->recipieNotExpired = new Thing\Recipe($this->titleNotExpired, $this->ingredientNamesNotExpired);
-        $this->recipieBestBefore = new Thing\Recipe($this->titleBestBefore, $this->ingredientNamesBestBefore);
-        $this->recipieExpired = new Thing\Recipe($this->titleExpired, $this->ingredientNamesExpired);
-
-        $this->recipies = [
-            $this->recipieNotExpired,
-            $this->recipieBestBefore,
-            $this->recipieExpired,
-        ];
-
         $this->recipeService = new Service\RecipeService(
-            $this->recipies,
-            $this->ingredientNamesBestBefore,
-            $this->ingredientNamesNotExpired
+            new RecipesMock(),
+            new Service\IngredientService(
+                new IngredientsMock()
+            )
         );
     }
 
@@ -45,22 +24,22 @@ class RecipieServiceTest extends TestCase
     {
         $result = $this->recipeService->filterBestBefore();
         $this->assertEquals(1, count($result));
-        $this->assertEquals($this->titleBestBefore, $result[0]->getTitle());
+        $this->assertEquals('titleBestBefore', $result[0]->getTitle());
     }
 
     public function testFilterBeforeUseBy()
     {
         $result = $this->recipeService->filterBeforeUseBy();
         $this->assertEquals(2, count($result));
-        $this->assertEquals($this->titleNotExpired, $result[0]->getTitle());
-        $this->assertEquals($this->titleBestBefore, $result[1]->getTitle());
+        $this->assertEquals('titleNotExpired', $result[0]->getTitle());
+        $this->assertEquals('titleBestBefore', $result[1]->getTitle());
     }
 
     public function testGetLunch()
     {
         $result = $this->recipeService->getLunch();
         $this->assertEquals(2, count($result));
-        $this->assertEquals($this->titleNotExpired, $result[1]['title']);
-        $this->assertEquals($this->titleBestBefore, $result[0]['title']);
+        $this->assertEquals('titleNotExpired', $result[1]['title']);
+        $this->assertEquals('titleBestBefore', $result[0]['title']);
     }
 }

@@ -8,6 +8,10 @@ class Ingredients
 {
     protected $ingredients;
 
+    /**
+     * Ingredients constructor.
+     * @param string $path the patch containing the input file relative to repository root
+     */
     public function __construct($path = 'data/ingredients.json')
     {
         $list = json_decode(

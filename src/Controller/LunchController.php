@@ -9,18 +9,11 @@ class LunchController
 {
     public function get()
     {
-        $data = new Service\Recipes();
-
-        $recipes = $data->get();
-
-        $ingredientService = new Service\IngredientService(
-            new Service\Ingredients()
-        );
-
         $recipeService = new Service\RecipeService(
-            $recipes,
-            $ingredientService->getTitlesBestBefore(),
-            $ingredientService->getTitlesBeforeUseBy()
+            new Service\Recipes(),
+            new Service\IngredientService(
+                new Service\Ingredients()
+            )
         );
 
         return new Response(

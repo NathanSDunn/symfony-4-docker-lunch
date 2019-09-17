@@ -13,11 +13,11 @@ class RecipeService
      * @param $ingredientsBestBefore
      * @param $ingredientNamesBeforeUseBy
      */
-    public function __construct($recipes, $ingredientsBestBefore, $ingredientNamesBeforeUseBy)
+    public function __construct(Recipes $recipes, IngredientService $ingredientService)
     {
-        $this->recipes = $recipes;
-        $this->ingredientsBestBefore = $ingredientsBestBefore;
-        $this->ingredientNamesBeforeUseBy = $ingredientNamesBeforeUseBy;
+        $this->recipes = $recipes->get();
+        $this->ingredientsBestBefore = $ingredientService->getTitlesBestBefore();
+        $this->ingredientNamesBeforeUseBy = $ingredientService->getTitlesBeforeUseBy();
     }
 
     private function filterByIngredients($ingredients)
