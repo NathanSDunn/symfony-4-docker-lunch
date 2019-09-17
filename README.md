@@ -25,7 +25,7 @@ When attempting to install silex via composer it was noted that Silex is no long
 
 Additionally, Symfony 4 complies with PSR-3: Logging, PSR-4: Autoloading,  PSR-6: Caching Interface and PSR-7: HTTP message interfaces.
 
-Whilst I have not used Symfony 4 previously I am experienced in PHP and Testing. I hope this demonstrates my ability to learn and interest in the topic.
+Whilst I have not used Symfony 4 previously I am experienced in PHP and Testing. While it may have been an easier option for me to choose something I am familiar with such as Laravel I also wanted to learn a few things about Symfony 4 along the way.
 
 ## Docker version 1
 Omitting the Docker version from docker-compose falls back to version 1. While there are more features available in newer versions, this excercise did not require these features and as such it was decided using the initial version would provide maximum forward compatibility should any later Docker versions be used.
@@ -76,7 +76,4 @@ To produce the final set of ingredients without duplicates associative arrays we
 
 Given that the list of ingredients per recipie is small there would not be a noticable difference in runtime performance by performing further micro optimisations - the largest real world time costs in this exercise are handling disk accesses, time to first byte (TTFB) of the endpoint query, and framework overhead.
 
-Refactoring dependencies to allow for dependency injection and be more easily tested would be another improvement. Whilst I have not yet researched how this is done in Symfony 4, I do know how this is done in Laravel and other frameworks. Refactoring classes to inject object dependencies in the constructor would be the first step in doing this.
-
-Whilst there are some aspects that can be improved in order to create a perfect solution I hope this existing implementation is sufficient to demonstrate my experience with PHP & Testing as well as my willingness and ability to learn new technologies (Symfony 4 and Docker). 
-
+I hope this existing implementation is sufficient to demonstrate my experience with PHP & Testing as well as my willingness and ability to learn new technologies (Symfony 4 and Docker which I had not used/configured previously). I spent a fair bit of extra time perfecting the app but the learning value definately made it worthwhile.
