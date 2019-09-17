@@ -17,7 +17,7 @@ class IngredientService
     }
 
     /**
-     * Create an associative array (ie. HashMap) of ingredients that are before their best-before date
+     * Create an array of ingredients that are before their best-before date
      * @return array the names of ingredients that are before their best before date
      */
     public function getTitlesBestBefore()
@@ -35,7 +35,7 @@ class IngredientService
     }
 
     /**
-     * Create an associative array (ie. HashMap) of ingredients that are before their use-by date
+     * Create an array of ingredients that are before their use-by date
      * @return array the names of ingredients that are before their use-by date
      */
     public function getTitlesBeforeUseBy()
