@@ -60,7 +60,7 @@ class RecipieServiceTest extends TestCase
     {
         $result = $this->recipeService->getLunch();
         $this->assertEquals(2, count($result));
-        $this->assertEquals($this->titleNotExpired, $result[1]);
-        $this->assertEquals($this->titleBestBefore, $result[0]);
+        $this->assertEquals($this->titleNotExpired, $result[1]['title']);
+        $this->assertEquals($this->titleBestBefore, $result[0]['title']);
     }
 }

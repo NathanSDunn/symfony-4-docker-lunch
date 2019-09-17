@@ -21,6 +21,10 @@ class LunchController
             $ingredientService->getTitlesBeforeUseBy()
         );
 
-        return new Response(json_encode($recipeService->getLunch()));
+        return new Response(
+            json_encode(
+                ['recipes' => $recipeService->getLunch()]
+            )
+        );
     }
 }

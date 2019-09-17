@@ -46,19 +46,21 @@ class RecipeService
     {
         $result = [];
         foreach ($this->filterBestBefore() as $recipe) {
-            $name = $recipe->getTitle();
-            if (!in_array($name, $result)) {
-                $result[] = $name;
-            }
+            $result[$recipe->getTitle()] = $recipe;
         }
 
         foreach ($this->filterBeforeUseBy() as $recipe) {
-            $name = $recipe->getTitle();
-            if (!in_array($name, $result)) {
-                $result[] = $name;
-            }
+            $result[$recipe->getTitle()] = $recipe;
         }
 
-        return $result;
+        $recipes = [];
+        foreach ($result as $key => $value) {
+            $recipes[] = [
+                'title' => $value->getTitle(),
+                'ingredients' => $value->getIngredients(),
+            ];
+        }
+
+        return $recipes;
     }
 }
