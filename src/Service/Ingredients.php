@@ -10,6 +10,7 @@ class Ingredients
 
     /**
      * Ingredients constructor.
+     * This class primarily functions as a Singleton in order to load the ingredients.json data only once
      * @param string $path the patch containing the input file relative to repository root
      */
     public function __construct($path = 'data/ingredients.json')
@@ -31,6 +32,10 @@ class Ingredients
         $this->ingredients = $ingredients;
     }
 
+    /*
+     * This function returns an array of ingredients as loaded from the source data
+     * @return array
+     */
     public function get()
     {
         return $this->ingredients;
