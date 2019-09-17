@@ -11,12 +11,12 @@ class LunchController
     {
         $data = new Service\Recipes();
 
-        $recipes = $data->readRecipies();
+        $recipes = $data->get();
 
         $ingredientService = new Service\IngredientService(
             new Service\Ingredients()
         );
-        
+
         $recipeService = new Service\RecipeService(
             $recipes,
             $ingredientService->getTitlesBestBefore(),

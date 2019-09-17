@@ -6,10 +6,16 @@ use App\Thing;
 
 class Recipes
 {
-    public function readRecipies($path = 'data/recipies.json')
+    protected $recipes;
+
+    /**
+     * Recipes constructor.
+     * @param string $path the patch containing the input file relative to repository root
+     */
+    public function __construct($path = 'data/recipies.json')
     {
         $list = json_decode(
-            file_get_contents(__DIR__ . '/../../' . $path),
+            file_get_contents(__DIR__ . '/../' . $path),
             true
         )['recipes'];
 
@@ -19,6 +25,11 @@ class Recipes
             $recipes[] = new Thing\Recipe($recipe['title'], $recipe['ingredients']);
         }
 
-        return $recipes;
+        $this->recipes = $recipes;
+    }
+
+    public function get()
+    {
+        return $this->recipes;
     }
 }

@@ -11,7 +11,7 @@ class Ingredients
     public function __construct($path = 'data/ingredients.json')
     {
         $list = json_decode(
-            file_get_contents(__DIR__ . '/../../' . $path),
+            file_get_contents(__DIR__ . '/../' . $path),
             true
         )['ingredients'];
 
