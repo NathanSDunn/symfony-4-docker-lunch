@@ -8,6 +8,8 @@ class Recipe
 
     private $ingredients;
 
+    private $ingredientsCount;
+
     /**
      * Recipie constructor.
      * @param $title
@@ -17,6 +19,7 @@ class Recipe
     {
         $this->title = $title;
         $this->ingredients = $ingredients;
+        $this->ingredientsCount = count($ingredients);
     }
 
     /**
@@ -44,6 +47,6 @@ class Recipe
     {
         $intersect = array_intersect($ingredientNames, $this->getIngredients());
 
-        return count($intersect) == count($this->getIngredients());
+        return count($intersect) == $this->ingredientsCount;
     }
 }
