@@ -6,20 +6,15 @@ use App\Thing;
 
 class IngredientsMock extends Ingredients
 {
-    protected $tomorrow;
-    protected $today;
-
-    protected $ingredients;
-
     public function __construct()
     {
-        $this->tomorrow = date('Y-m-d', strtotime('+1 day'));
-        $this->today = date('Y-m-d', strtotime('now'));
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        $today = date('Y-m-d', strtotime('now'));
 
         $this->ingredients = [
-            $ingredient = new Thing\Ingredient('titleBestBefore', $this->tomorrow, $this->tomorrow),
-            $ingredient = new Thing\Ingredient('titleBestAfter', $this->today, $this->tomorrow),
-            $ingredient = new Thing\Ingredient('titleExpired', $this->today, $this->today),
+            $ingredient = new Thing\Ingredient('titleBestBefore', $tomorrow, $tomorrow),
+            $ingredient = new Thing\Ingredient('titleBestAfter', $today, $tomorrow),
+            $ingredient = new Thing\Ingredient('titleExpired', $today, $today),
         ];
     }
 }
