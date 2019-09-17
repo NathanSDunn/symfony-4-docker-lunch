@@ -1,6 +1,8 @@
 <?php
 namespace App\Service;
 
+use App\Thing\Ingredient;
+
 class IngredientService
 {
     protected $ingredients;
@@ -17,12 +19,13 @@ class IngredientService
     /**
      * Returns an array of ingredients that are before their best before date
      *@param ingredients The list of ingredients
-     * @return the ingredients that are before their best before dates;
+     * @return array the ingredients that are before their best before dates;
      */
     public function filterIsBestBefore()
     {
         $result = [];
 
+        /** @var Ingredient $ingredient */
         foreach ($this->ingredients as $ingredient) {
             if ($ingredient->isBestBefore()) {
                 $result[] = $ingredient;
@@ -34,13 +37,13 @@ class IngredientService
 
     /**
      * Returns an array of ingredients that are after their best-before date, but before their use-by date
-     * @param $ingredients the list of ingredients
-     * @return the ingredients that are between best-before and use-by dates
+     * @return array the ingredients that are between best-before and use-by dates
      */
     public function filterIsAfterBestBeforeAndBeforeUseBy()
     {
         $result = [];
 
+        /** @var Ingredient $ingredient */
         foreach ($this->ingredients as $ingredient) {
             if (!$ingredient->isBestBefore() && $ingredient->isBeforeUseBy()) {
                 $result[] = $ingredient;
@@ -52,13 +55,13 @@ class IngredientService
 
     /**
      * Create an associative array (ie. HashMap) of ingredients that are before their best-before date
-     * @param $ingredients the list of ingredients
-     * @return the names of ingredients that are before their best before date
+     * @return array the names of ingredients that are before their best before date
      */
     public function getTitlesBestBefore()
     {
         $result = [];
 
+        /** @var Ingredient $ingredient */
         foreach ($this->ingredients as $ingredient) {
             if ($ingredient->isBestBefore()) {
                 $result[] = $ingredient->getTitle();
@@ -70,13 +73,13 @@ class IngredientService
 
     /**
      * Create an associative array (ie. HashMap) of ingredients that are before their use-by date
-     * @param $ingredients the list of ingredients
-     * @return the names of ingredients that are before their use-by date
+     * @return array the names of ingredients that are before their use-by date
      */
     public function getTitlesBeforeUseBy()
     {
         $result = [];
 
+        /** @var Ingredient $ingredient */
         foreach ($this->ingredients as $ingredient) {
             if ($ingredient->isBeforeUseBy()) {
                 $result[] = $ingredient->getTitle();

@@ -23,7 +23,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Returns the Title of the Recipe
+     * @return string
      */
     public function getTitle()
     {
@@ -31,7 +32,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Returns the Ingredients needed to make the Recipe
+     * @return array
      */
     public function getIngredients()
     {
@@ -40,10 +42,10 @@ class Recipe
 
     /**
      * Determines if a recipie can be fulfilled from a list of ingredients
-     * @param $ingredientNames the ingredients available
+     * @param $ingredientNames array the ingredients available
      * @return bool whether or not all ingredients are available for the recipie
      */
-    public function hasAllIngredientNames($ingredientNames)
+    public function hasAllIngredientNames(array $ingredientNames)
     {
         $intersect = array_intersect($ingredientNames, $this->getIngredients());
 

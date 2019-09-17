@@ -11,12 +11,12 @@ class Ingredient
     private $useBy;
 
     /**
-     * IngredientDto constructor.
+     * Ingredient constructor.
      * @param $title
      * @param $bestBefore
      * @param $useBy
      */
-    public function __construct($title, $bestBefore, $useBy)
+    public function __construct(string $title, string $bestBefore, string $useBy)
     {
         $this->title = $title;
         $this->bestBefore = $bestBefore;
@@ -24,7 +24,8 @@ class Ingredient
     }
 
     /**
-     * @return mixed
+     * Returns the Title of an Ingredient
+     * @return string
      */
     public function getTitle()
     {
@@ -32,7 +33,8 @@ class Ingredient
     }
 
     /**
-     * @return mixed
+     * Returns the bestBefore date string of an Ingredient
+     * @return string
      */
     public function getBestBefore()
     {
@@ -40,7 +42,8 @@ class Ingredient
     }
 
     /**
-     * @return mixed
+     * Returns the useBy date string of an Ingredient
+     * @return string
      */
     public function getUseBy()
     {

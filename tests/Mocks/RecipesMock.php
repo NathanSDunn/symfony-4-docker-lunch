@@ -15,6 +15,11 @@ class RecipesMock extends Recipes
     protected $ingredientNamesExpired = ['titleBestBefore', 'titleBestAfter', 'titleExpired'];
     protected $recipieExpired;
 
+    /*
+     * Mock a set of recipies for testing
+     * @param
+     * @return array
+     */
     public function get($path = 'data/recipies.json')
     {
         $this->recipieNotExpired = new Thing\Recipe('titleNotExpired', $this->ingredientNamesNotExpired);

@@ -1,6 +1,8 @@
 <?php
 namespace App\Service;
 
+use App\Thing\Recipe;
+
 class RecipeService
 {
     protected $recipes;
@@ -9,9 +11,8 @@ class RecipeService
 
     /**
      * RecipeService constructor.
-     * @param $recipes
-     * @param $ingredientsBestBefore
-     * @param $ingredientNamesBeforeUseBy
+     * @param Recipes $recipes
+     * @param IngredientService $ingredientService
      */
     public function __construct(Recipes $recipes, IngredientService $ingredientService)
     {
@@ -20,9 +21,10 @@ class RecipeService
         $this->ingredientNamesBeforeUseBy = $ingredientService->getTitlesBeforeUseBy();
     }
 
-    private function filterByIngredients($ingredients)
+    private function filterByIngredients(array $ingredients)
     {
         $result = [];
+        /* @var $recipe Recipe */
         foreach ($this->recipes as $recipe) {
             if ($recipe->hasAllIngredientNames($ingredients)) {
                 $result[] = $recipe;
@@ -34,12 +36,12 @@ class RecipeService
 
     public function filterBestBefore()
     {
-        return $this->filterByIngredients($this->ingredientsBestBefore);
+        return $this->filterByIngredients((array) $this->ingredientsBestBefore);
     }
 
     public function filterBeforeUseBy()
     {
-        return $this->filterByIngredients($this->ingredientNamesBeforeUseBy);
+        return $this->filterByIngredients((array) $this->ingredientNamesBeforeUseBy);
     }
 
     public function getLunch()
