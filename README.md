@@ -1,9 +1,9 @@
 # Installation  / Build
-Docker version 1 or higher,  Composer 1.6.3 or higher, PHP7 and git are required for this project to build and run.
+Docker version 1 or higher,  Composer 1.6.3 or higher, PHP7.2 or higher and git are required for this project to build and run.
 
 If you do not have them, they can be installed on Ubuntu 18.04 or another recent Debian Linux distribution by running
 
-``sudo apt update && sudo apt install docker docker-compose composer git php7.0``
+``sudo apt update && sudo apt install docker docker-compose composer git php7.2``
 
 Once these dependencies are installed, simply run
 ``./build.sh``
